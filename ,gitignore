@@ -1,0 +1,12 @@
+*.exe
+*.out
+*.app
+*.tmp
+*.log
+*.obj
+*.o
+.vscode/
+.idea/
+*.user
+*.suo
+commands.txt
