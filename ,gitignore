@@ -9,4 +9,4 @@
 .idea/
 *.user
 *.suo
-commands.txt
+output.txt

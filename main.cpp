@@ -17,6 +17,8 @@
 // test8.txt - символы 
 // test9.txt - символы и буквы
 
+//для проверки cmd, для вывода powershell
+
 
 int main(){
     string filename,                    //имя файла
@@ -70,8 +72,9 @@ int main(){
                 i=-1, j=-1;                                              // индексы элемнтов пары
             while(getline(ss,el,' ')){
                 if(el.size()>1 || el.size()==1 && !Set->AtSet(el[0])){
-                    cout<< "ошибка: пара не добавлена в отношение - " << el<< " не является элементом множества\n";
+                    cout<< "ошибка: пара \"" << str << "\" не добавлена в отношение - " << el<< " не является элементом множества\n";
                     flag=false;
+                    break;
                 }
                 else {
                     countel++;
@@ -83,7 +86,17 @@ int main(){
                     continue;
                 }
             }
+            if(countel<2 && flag){
+                cout<<"ошибка: недостаточно элементов в паре\n";
+            }
         }
+        cout<<"R = { ";
+        for(int i=0;i<n;++i){
+            for(int j=0;j<n;++j)
+                if(matr[i][j])
+                    cout<<"("<<elemsVec[i]<<", "<<elemsVec[j]<<") ";
+        }
+        cout<<"}\n";
 
         // вывод матрицы
         cout<<"\nМатрица отношения:\n";
@@ -121,7 +134,7 @@ int main(){
             cout<<"\nЯвляется отношением эквивалентности:\nКлассы эквивалентности:\n";
 
             vector<Node*> classes;                  // классы эквивалентности
-            map<char,int> valueClass;               // связь элемента множества и класса
+            map<char,bool> valueClass;               // связь элемента множества и класса
 
             for(auto c: elemsVec){
                 valueClass[c]=0;
@@ -222,5 +235,9 @@ int main(){
 
         cout<<string(60, '-')<<"\n\n";
         cout<<string(60, '-')<<"\nВведите название файла: ";
+        
+        for(int i=0;i<n;++i)
+            delete[]matr[i];
+        delete[]matr;
     }
 }
